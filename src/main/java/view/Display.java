@@ -1,6 +1,6 @@
 package view;
 
-import sun.awt.AWTAccessor;
+
 
 import javax.swing.*;
 import java.awt.*;

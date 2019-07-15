@@ -1,9 +1,11 @@
 package controller;
 
+import controller.ImageLoader;
 import view.Display;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 public class Game implements Runnable{
     private Display display;
@@ -14,6 +16,8 @@ public class Game implements Runnable{
     private BufferStrategy bs;
     private Graphics g;
 
+    private BufferedImage testImage;
+
     public Game(String title, int width, int height){
         this.width = width;
         this.height = height;
@@ -22,7 +26,9 @@ public class Game implements Runnable{
     }
 
     private void init(){
+
         display = new Display(title, width, height);
+        testImage = ImageLoader.loadImage("goinfre/tshata/Desktop/swingy/src/main/java/res/images/test.png");
     }
     private void update(){
 
@@ -40,10 +46,13 @@ public class Game implements Runnable{
 
         //draw on screen
        // g.drawRect(10,50,50,70);
+        g.drawImage(testImage, 20, 20, null);
         g.setColor(Color.red);
         g.fillRect(50,50, 50, 50);
         g.setColor(Color.blue);
         g.fillRect(0,0, 50, 50);
+
+
 
         bs.show();
         g.dispose();
