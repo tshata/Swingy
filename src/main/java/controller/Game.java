@@ -6,6 +6,7 @@ import view.Display;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class Game implements Runnable{
     private Display display;
@@ -28,7 +29,11 @@ public class Game implements Runnable{
     private void init(){
 
         display = new Display(title, width, height);
-        testImage = ImageLoader.loadImage("goinfre/tshata/Desktop/swingy/src/main/java/res/images/test.png");
+        try {
+            testImage = ImageLoader.loadImage("/goinfre/tshata/Desktop/swingy/src/main/java/res/images/test.png");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
     private void update(){
 
