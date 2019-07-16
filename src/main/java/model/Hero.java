@@ -1,6 +1,6 @@
-package model;
+package main.java.model;
 
-public abstract class Hero extends Entity{
+public abstract class Hero extends Entity {
 
     protected int experience;
     protected int level;

@@ -1,11 +1,11 @@
-import view.Display;
+package main.java;
 
-import controller.Game;
+import main.java.controller.Game;
 
 public class Launcher
 {
     public static void main(String[] args){
-       Game game = new Game("Swingy", 500, 400);
+       Game game = new Game("Swingy", 1200, 950);
        game.start();
     }
 }

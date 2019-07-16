@@ -1,4 +1,4 @@
-package controller;
+package main.java.controller;
 
 import java.awt.image.BufferedImage;
 import javax.imageio.IIOException;

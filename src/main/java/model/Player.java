@@ -1,6 +1,7 @@
-package model;
+package main.java.model;
 
 import java.awt.*;
+
 
 public class Player extends Hero {
 

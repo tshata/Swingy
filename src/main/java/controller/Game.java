@@ -1,6 +1,7 @@
-package controller;
+package main.java.controller;
 
-import controller.ImageLoader;
+
+import main.java.view.SpriteSheet;
 import view.Display;
 
 import java.awt.*;
@@ -18,6 +19,7 @@ public class Game implements Runnable{
     private Graphics g;
 
     private BufferedImage testImage;
+    private SpriteSheet sheet;
 
     public Game(String title, int width, int height){
         this.width = width;
@@ -30,7 +32,8 @@ public class Game implements Runnable{
 
         display = new Display(title, width, height);
         try {
-            testImage = ImageLoader.loadImage("/images/test.png");
+            testImage = ImageLoader.loadImage("/images/sheet4.png");
+            sheet = new SpriteSheet(testImage);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -50,14 +53,8 @@ public class Game implements Runnable{
         g.clearRect(0,0,width, height);
 
         //draw on screen
-       // g.drawRect(10,50,50,70);
-        g.drawImage(testImage, 0, 0, null);
-        g.setColor(Color.red);
-        g.fillRect(50,50, 50, 50);
-        g.setColor(Color.blue);
-        g.fillRect(0,0, 50, 50);
-
-
+        g.drawImage(sheet.crop(0,0, 60, 60), 5, 5, null);
+        g.drawImage(sheet.crop(120,0, 65, 65), 65, 5, null);
 
         bs.show();
         g.dispose();
