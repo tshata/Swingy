@@ -30,7 +30,7 @@ public class Game implements Runnable{
 
         display = new Display(title, width, height);
         try {
-            testImage = ImageLoader.loadImage("/goinfre/tshata/Desktop/swingy/src/main/java/res/images/test.png");
+            testImage = ImageLoader.loadImage("/images/test.png");
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -51,7 +51,7 @@ public class Game implements Runnable{
 
         //draw on screen
        // g.drawRect(10,50,50,70);
-        g.drawImage(testImage, 20, 20, null);
+        g.drawImage(testImage, 0, 0, null);
         g.setColor(Color.red);
         g.fillRect(50,50, 50, 50);
         g.setColor(Color.blue);
