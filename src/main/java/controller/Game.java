@@ -1,8 +1,9 @@
 package main.java.controller;
 
 
+import main.java.view.KeyManager;
 import main.java.view.SpriteSheet;
-import view.Display;
+import main.java.view.Display;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -21,22 +22,37 @@ public class Game implements Runnable{
     private BufferedImage testImage;
     private SpriteSheet sheet;
 
+    //states
+    private State gameState;
+    private State menuState;
+
+    //Input
+    private KeyManager keyManager;
+
     public Game(String title, int width, int height){
         this.width = width;
         this.height = height;
         this.title = title;
-
+        keyManager = new KeyManager();
     }
 
     private void init(){
 
         display = new Display(title, width, height);
+        display.getFrame().addKeyListener(keyManager);
         Assets.init();
+
+        gameState = new GameState(this);
+        menuState = new MenuState(this);
+        State.setState(gameState);
     }
 
-    int x = 0;
+
     private void update(){
-            x+=1;
+        keyManager.update();
+            if(State.getState() != null){
+                State.getState().update();
+            }
     }
 
     private void render(){
@@ -50,8 +66,12 @@ public class Game implements Runnable{
         g.clearRect(0,0,width, height);
 
         //draw on screen
-        g.drawImage(Assets.player, x, 10, null);
-        g.drawImage(Assets.enemy, 100, 100, null);
+        if(State.getState() != null){
+            State.getState().render(g);
+        }
+
+//        g.drawImage(Assets.player, x, 10, null);
+//        g.drawImage(Assets.enemy, 100, 100, null);
         bs.show();
         g.dispose();
     }
@@ -89,6 +109,9 @@ public class Game implements Runnable{
         stop();
     }
 
+    public KeyManager getKeyManager(){
+        return keyManager;
+    }
     public synchronized void start(){
         if(running)
             return;

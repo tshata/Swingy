@@ -6,11 +6,11 @@ import main.java.controller.Game;
 import java.awt.*;
 
 
-public class Hero extends Creature {
+public class Enemy extends Creature {
     private Game game;
-    private Hero hero;
+    private Enemy enemy;
 
-    public Hero(Game game, float x, float y){
+    public Enemy(Game game, float x, float y){
         super(x, y);
         this.game = game;
     }
@@ -32,6 +32,6 @@ public class Hero extends Creature {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.player, (int) x, (int) y, null);
+        g.drawImage(Assets.enemy, (int) x, (int) y, null);
     }
 }
