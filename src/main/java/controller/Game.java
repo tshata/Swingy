@@ -31,15 +31,12 @@ public class Game implements Runnable{
     private void init(){
 
         display = new Display(title, width, height);
-        try {
-            testImage = ImageLoader.loadImage("/images/sheet4.png");
-            sheet = new SpriteSheet(testImage);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        Assets.init();
     }
-    private void update(){
 
+    int x = 0;
+    private void update(){
+            x+=1;
     }
 
     private void render(){
@@ -53,19 +50,41 @@ public class Game implements Runnable{
         g.clearRect(0,0,width, height);
 
         //draw on screen
-        g.drawImage(sheet.crop(0,0, 60, 60), 5, 5, null);
-        g.drawImage(sheet.crop(120,0, 65, 65), 65, 5, null);
-
+        g.drawImage(Assets.player, x, 10, null);
+        g.drawImage(Assets.enemy, 100, 100, null);
         bs.show();
         g.dispose();
     }
 
     public void run(){
         init();
+        int fps = 60;
+        double timePerTick;
+        timePerTick = 1000000000 / fps;
+        double delta = 0;
+        long now;
+        long lastTime = System.nanoTime();
+        long timer = 0;
+        long ticks = 0;
 
         while (running){
-            update();
-            render();
+            now = System.nanoTime();
+            delta += (now - lastTime) / timePerTick;
+            timer += now -lastTime;
+            lastTime = now;
+
+            if(delta >= 1) {
+                update();
+                render();
+                ticks++;
+                delta--;
+            }
+            //print every one second the frames and ticks
+            if(timer >= 1000000000){
+                System.out.println("Ticks and Frames: " + ticks);
+                ticks = 0;
+                timer = 0;
+            }
         }
         stop();
     }
