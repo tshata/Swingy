@@ -66,8 +66,8 @@ public class Game implements Runnable{
         g.clearRect(0,0,width, height);
 
         //draw on screen
-        if(State.getState() != null){
-            State.getState().render(g);
+        if (State.getState() != null){
+                State.getState().render(g);
         }
 
 //        g.drawImage(Assets.player, x, 10, null);
