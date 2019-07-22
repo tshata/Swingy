@@ -22,7 +22,7 @@ public class GameState extends State{
         int m = rand.nextInt(700);
         int p = rand.nextInt(800);
         int q = rand.nextInt(700);
-        hero = new Hero(game, 400 , 400);
+        hero = new Hero(game, 300 , 400);
 
             enemy1 = new Enemy(game, n, m);
             enemy2 = new Enemy(game, p, q);

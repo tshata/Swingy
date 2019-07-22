@@ -7,11 +7,14 @@ import java.awt.*;
 import java.util.Random;
 
 public class Enemy extends Creature {
-    private static float x;
+    Random random = new Random();
+    private static float x = 0;
+
+    private static float y = 0;
     private Game game;
     private Enemy enemy;
 
-    Random random = new Random();
+    //Random random = new Random();
     public Enemy(Game game, float x, float y){
         super(x, y, Creature.DEFAULT_WIDTH, Creature.DEFAULT_HEIGHT);
         this.game = game;
@@ -32,18 +35,52 @@ public class Enemy extends Creature {
 //                x += random.nextInt(5);
 //            }
             if(Hero.x > Enemy.x) {
-                x += random.nextInt(3);
-                y -= random.nextInt(3);
+//                x += random.nextInt(3);
+//                y -= random.nextInt(3);
+             //   y++;
+x++;
             }
-           else if(Hero.x < Enemy.x)
+            if(Hero.x < Enemy.x)
             {
-                x -= random.nextInt(4);
-                y += random.nextInt(4);
+//                x -= random.nextInt(4);
+//                y += random.nextInt(4);
+                 //  y--;
+                   x--;
             }
-            else {
-              x += random.nextInt(5);
-              y -= random.nextInt(5);
-            }
+             if(Hero.y > Enemy.y){
+
+//              x += random.nextInt(5);
+//              y -= random.nextInt(5);
+                y++;
+               // x--;
+            } if(Hero.y < Enemy.y){
+                y--;
+            //    x++;
+            } if(Hero.x > Enemy.x && Hero.y < Enemy.y) {
+//                x += random.nextInt(3);
+//                y -= random.nextInt(3);
+            //   y++;
+            y--;
+            x++;
+        }
+         if(Hero.x < Enemy.x && Hero.y < Enemy.y)
+        {
+//                x -= random.nextInt(4);
+//                y += random.nextInt(4);
+            y--;
+            x--;
+        }
+         if(Hero.y > Enemy.y && Hero.x < Enemy.x){
+
+//              x += random.nextInt(5);
+//              y -= random.nextInt(5);
+            y++;
+            x--;
+        } if(Hero.y < Enemy.y && Hero.x > Enemy.x){
+            y--;
+            x++;
+        }
+
 
     }
 
